@@ -3,41 +3,6 @@
 
 <head>
     
-      <script type="text/javascript">
-const ipv4Ranges = [  { start: '192.178.0.0', end: '192.178.255.255' }, 
-                    { start: '66.249.0.0', end: '66.249.255.255' }, 
-                    '123.27.137.145',
-                    { start: '72.14.192.0', end: '72.14.255.255' }, 
-                    { start: '74.125.128.0 ', end: '74.125.255.255' },
-                    { start: '209.85.128.0', end: '209.85.255.255' }];
-
-const ipv6Ranges = [  { start: '2001:4860:4000:0:0:0:0:0', end: '2001:4860:4fff:ffff:ffff:ffff:ffff:ffff' }];
-
-function isInRange(ip, ranges) {
-  for (let i = 0; i < ranges.length; i++) {
-    const start = ipToNumber(ranges[i].start);
-    const end = ipToNumber(ranges[i].end);
-    if (start <= ip && ip <= end) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function ipToNumber(ip) {
-  const parts = ip.split('.');
-  return parts.reduce((result, part) => (result << 8) + parseInt(part, 10), 0);
-}
-
-function checkIp() {
-  const ip = ipToNumber(window.location.hostname);
-  if (!isInRange(ip, ipv4Ranges) && !isInRange(ip, ipv6Ranges)) {
-    window.location.replace('http://newurl.com');
-  }
-}
-
-checkIp();
-  </script>
 
     
     <meta charset="utf-8">
