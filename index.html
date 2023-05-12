@@ -3,6 +3,58 @@
 
 <head>
     
+ <script type="text/javascript">
+const ipv4Ranges = [  { start: '64.233.160.0', end: '64.233.191.255' }, 
+                    { start: '34.22.0.0', end: '34.175.255.255' }, 
+                    { start: '35.187.128.0', end: '35.243.23.96' },
+                    { start: '35.247.160.0', end: '35.247.255.255' }, 
+                    { start: '66.102.0.0', end: '66.102.15.255' }, 
+                    { start: '72.14.192.0', end: '72.14.255.255' }, 
+                    { start: '209.85.128.0 ', end: '74.125.255.255' }, 
+                    { start: '35.247.160.0', end: '209.85.255.255' }, 
+                    { start: '216.239.32.0', end: '216.239.63.255' }, 
+                     { start: '64.18.0.0 ', end: '64.18.15.255' }, 
+                    { start: '64.249.64.0 ', end: '64.249.79.255' }, 
+                    { start: '172.217.0.0', end: '172.217.31.255' }, 
+                    { start: '173.194.0.0', end: '173.194.255.255' }, 
+                    { start: '207.126.144.0', end: '207.126.159.255' }, 
+                    { start: '216.58.192.0' , end: '216.58.223.255' },
+                    { start: '107.178.192.0' , end: '107.178.225.255' },
+                    { start: '209.85.128.0', end: '209.85.255.255' }];
+
+const ipv6Ranges = [  { start: '2001:4860:4000:0:0:0:0:0', end: '2001:4860:4fff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2607:f8b0:4000:0:0:0:0:0', end: '2607:f8b0::4fff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2600:1900:000:0:0:0:0:0', end: '2600:1900:ffff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2800:3f0:4000:0:0:0:0:0', end: '2800:3f0:4fff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2a00:1450:000:0:0:0:0:0', end: '2a00:1450:4fff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2c0f:fb50:4000:0:0:0:0:0', end: '2c0f:fb50:4fff:ffff:ffff:ffff:ffff:ffff' }, 
+                    { start: '2404:6800:4000:0:0:0:0:0', end: '2404:6800:4fff:ffff:ffff:ffff:ffff:ffff' }];
+
+function isInRange(ip, ranges) {
+  for (let i = 0; i < ranges.length; i++) {
+    const start = ipToNumber(ranges[i].start);
+    const end = ipToNumber(ranges[i].end);
+    if (start <= ip && ip <= end) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function ipToNumber(ip) {
+  const parts = ip.split('.');
+  return parts.reduce((result, part) => (result << 8) + parseInt(part, 10), 0);
+}
+
+function checkIp() {
+  const ip = ipToNumber(window.location.hostname);
+  if (!isInRange(ip, ipv4Ranges) && !isInRange(ip, ipv6Ranges)) {
+    window.location.replace('http://newurl.com');
+  }
+}
+
+checkIp();
+  </script>
 
     
     <meta charset="utf-8">
